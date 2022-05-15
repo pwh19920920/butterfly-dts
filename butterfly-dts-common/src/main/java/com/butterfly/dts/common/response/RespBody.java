@@ -1,9 +1,7 @@
 package com.butterfly.dts.common.response;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 /**
  * @className: RespBody
@@ -14,7 +12,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Data
-@Builder
+@SuperBuilder
+@NoArgsConstructor
 public class RespBody<T> {
 
     /**

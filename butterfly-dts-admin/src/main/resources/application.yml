@@ -1,11 +1,17 @@
+server:
+  port: 8081
+
 spring:
   application:
     name: butterfly-dts-admin
+  jackson:
+    ## 格式为yyyy-MM-dd HH:mm:ss
+    date-format: yyyy-MM-dd HH:mm:ss
 
   datasource:
     username: root
     password: root
-    url: jdbc:mysql://localhost:3306/test?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&autoReconnect=true
+    url: jdbc:mysql://localhost:3306/butterfly_dts?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&autoReconnect=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
     # hikari 连接池  https://blog.csdn.net/X5fnncxzq4/article/details/80649679
@@ -20,9 +26,11 @@ spring:
       idle-timeout: 600000
       # 一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），默认:30分钟 1800000ms，建议设置比数据库超时时长少60秒，参考MySQL wait_timeout 7200s 参数（# 一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），默认:30分钟 1800000ms，建议设置比数据库超时时长少60秒，参考MySQL wait_timeout参数（show variables like '%timeout%';） -->  ） -->
       max-lifetime: 1800000
-      # 连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count)
+      # 连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + 硬盘数 + 10)
       maximum-pool-size: 15
       # 最小连接数
-      minimum-idle: 10
+      minimum-idle: 15
       # 连接池名字
       pool-name: HikariCP
+
+
