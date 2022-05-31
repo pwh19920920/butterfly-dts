@@ -19,21 +19,26 @@
         <java.version>1.8</java.version>
         <guava.version>18.0</guava.version>
         <jodd-http.version>6.2.1</jodd-http.version>
-        <fastjson.version>1.2.69</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <commons-lang3.version>3.5</commons-lang3.version>
         <hutool-all.version>5.7.22</hutool-all.version>
+        <logstash-logback-encoder.verison>4.11</logstash-logback-encoder.verison>
+
+        <!-- db -->
+        <mybatis-plus-boot-starter.version>3.5.1</mybatis-plus-boot-starter.version>
+        <mysql-connector-java.version>8.0.20</mysql-connector-java.version>
 
         <butterfly-dts-common.version>0.0.1-SNAPSHOT</butterfly-dts-common.version>
-        <butterfly-dts-core.version>0.0.1-SNAPSHOT</butterfly-dts-core.version>
-        <butterfly-dts-starter.version>0.0.1-SNAPSHOT</butterfly-dts-starter.version>
+        <butterfly-dts-client.version>0.0.1-SNAPSHOT</butterfly-dts-client.version>
+        <butterfly-dts-client-starter.version>0.0.1-SNAPSHOT</butterfly-dts-client-starter.version>
     </properties>
 
     <modules>
-        <module>butterfly-dts-core</module>
         <module>butterfly-dts-common</module>
         <module>butterfly-dts-admin</module>
-        <module>butterfly-dts-starter-demo</module>
-        <module>butterfly-dts-starter</module>
+        <module>butterfly-dts-client</module>
+        <module>butterfly-dts-client-starter-demo</module>
+        <module>butterfly-dts-client-starter</module>
     </modules>
 
     <dependencyManagement>
@@ -69,6 +74,12 @@
                 <version>${hutool-all.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>${logstash-logback-encoder.verison}</version>
+            </dependency>
+
             <!-- 系统版本配置 -->
             <dependency>
                 <groupId>com.butterfly</groupId>
@@ -78,14 +89,27 @@
 
             <dependency>
                 <groupId>com.butterfly</groupId>
-                <artifactId>butterfly-dts-core</artifactId>
-                <version>${butterfly-dts-core.version}</version>
+                <artifactId>butterfly-dts-client</artifactId>
+                <version>${butterfly-dts-client.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.butterfly</groupId>
-                <artifactId>butterfly-dts-starter</artifactId>
-                <version>${butterfly-dts-starter.version}</version>
+                <artifactId>butterfly-dts-client-starter</artifactId>
+                <version>${butterfly-dts-client-starter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector-java.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus-boot-starter.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

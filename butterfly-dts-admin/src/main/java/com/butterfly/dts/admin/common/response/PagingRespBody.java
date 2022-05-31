@@ -31,7 +31,7 @@ public class PagingRespBody<T> extends RespBody<T> {
                 .size(page.getSize())
                 .total(page.getTotal())
                 .data(page.getRecords())
-                .status(200)
+                .status(Status.SUCCESS)
                 .build();
     }
 }
