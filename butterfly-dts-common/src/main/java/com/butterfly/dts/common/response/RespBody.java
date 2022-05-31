@@ -75,7 +75,7 @@ public class RespBody<T> {
          */
         GATEWAY_TIMEOUT(504);
 
-        private int code;
+        private final int code;
 
         Status(int code) {
             this.code = code;
@@ -104,7 +104,8 @@ public class RespBody<T> {
     /**
      * 消息
      */
-    private String message;
+    @Builder.Default
+    private String message = "OK";
 
     /**
      * 数据
@@ -130,7 +131,7 @@ public class RespBody<T> {
      * @return
      */
     public boolean isSuccess() {
-        return this.status != Status.SUCCESS;
+        return this.status == Status.SUCCESS;
     }
 
     public int getStatus() {

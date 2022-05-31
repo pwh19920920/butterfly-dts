@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -27,7 +28,7 @@ public class SystemBusinessLineController {
     private final SystemBusinessLineService systemBusinessLineService;
 
     @RequestMapping
-    public PagingRespBody<List<SystemBusinessLine>> test(@ModelAttribute PagingVO<SystemBusinessLine> page) {
-        return PagingRespBody.<SystemBusinessLine>buildByPage(systemBusinessLineService.page(page));
+    public PagingRespBody<Collection<SystemBusinessLine>> test(@ModelAttribute PagingVO<SystemBusinessLine> page) {
+        return PagingRespBody.buildByPage(systemBusinessLineService.page(page));
     }
 }

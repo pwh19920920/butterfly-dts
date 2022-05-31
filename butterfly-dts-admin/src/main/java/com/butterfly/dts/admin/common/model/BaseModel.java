@@ -33,5 +33,5 @@ public class BaseModel {
     /**
      * 删除标记
      */
-    private Integer deleted;
+    private Boolean deleted;
 }

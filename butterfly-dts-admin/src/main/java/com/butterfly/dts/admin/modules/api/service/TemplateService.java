@@ -1,5 +1,7 @@
 package com.butterfly.dts.admin.modules.api.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.butterfly.dts.admin.modules.transform.model.TransformMappingResult;
 import com.butterfly.dts.admin.modules.transform.service.TransformMappingResultService;
@@ -26,15 +28,16 @@ public class TemplateService {
 
     /**
      * 通过业务线码查询模板
+     *
      * @param businessLineCode
      * @return
      */
     public List<Template> queryTemplateForBusinessLineCode(String businessLineCode) {
         // 查询所有模板
-        LambdaQueryChainWrapper<TransformMappingResult> query = transformMappingResultService.lambdaQuery()
+        List<TransformMappingResult> transformMappingResults = transformMappingResultService
+                .lambdaQuery()
                 .eq(TransformMappingResult::getSystemBusinessLineCode, businessLineCode)
-                .eq(TransformMappingResult::getDeleted, Boolean.FALSE);
-        List<TransformMappingResult> transformMappingResults = transformMappingResultService.list(query);
+                .eq(TransformMappingResult::getDeleted, Boolean.FALSE).list();
 
         // 数据转换
         return transformMappingResults
