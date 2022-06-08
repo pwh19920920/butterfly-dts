@@ -5,7 +5,6 @@ import com.butterfly.dts.admin.modules.api.service.TemplateService;
 import com.butterfly.dts.common.model.Template;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,7 +31,7 @@ public class TemplateController {
      * @param businessLineCode
      * @return
      */
-    @GetMapping("/{businessLineCode}")
+    @RequestMapping("/{businessLineCode}")
     public PagingRespBody<Collection<Template>> templates(@PathVariable String businessLineCode) {
         List<Template> templates = templateService.queryTemplateForBusinessLineCode(businessLineCode);
         return PagingRespBody.buildByData(templates);

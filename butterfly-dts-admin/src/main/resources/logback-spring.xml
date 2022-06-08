@@ -28,16 +28,14 @@
                             {
                             "timestamp": "%d{yyyy-MM-dd HH:mm:ss.SSS}",
                             "trace": "%X{X-B3-TraceId:-}",
-                            "span": "%X{X-B3-SpanId:-}",
-                            "parent": "%X{X-B3-ParentSpanId:-}",
-                            "exportable": "%X{X-Span-Export:-}",
                             "pid": "${PID:-}",
                             "service": "${springAppName:-}",
                             "instanceId": "${springAppInstanceId:-}",
                             "level": "%level",
                             "thread": "%thread",
                             "class": "%logger{40}.%M",
-                            "content": "#asJson{%message}",
+                            "type": "%X{type:-}",
+                            "content": "#tryJson{%message}",
                             "exception": "%wEx"
                             }
                         </pattern>

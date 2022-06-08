@@ -32,5 +32,6 @@ spring:
       minimum-idle: 15
       # 连接池名字
       pool-name: HikariCP
-
+  profiles:
+    active: debug
 

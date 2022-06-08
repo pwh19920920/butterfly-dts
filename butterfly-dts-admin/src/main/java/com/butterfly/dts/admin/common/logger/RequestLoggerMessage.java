@@ -1,11 +1,15 @@
 package com.butterfly.dts.admin.common.logger;
 
+import com.alibaba.fastjson.JSON;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
+import org.slf4j.MDC;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 /**
  * request请求日志
@@ -13,16 +17,20 @@ import javax.servlet.http.HttpServletRequest;
  * @author weihuang
  */
 @Getter
-@Builder
+@SuperBuilder
 public class RequestLoggerMessage extends BaseLoggerMessage {
 
     public static final String UNKNOWN = "unknown";
 
-    private String method;
+    private final String method;
 
-    private String ip;
+    private final String ip;
 
-    private String uri;
+    private final String uri;
+
+    private final String queryString;
+
+    private final Object params;
 
     @Override
     public LoggerType getType() {
@@ -33,7 +41,7 @@ public class RequestLoggerMessage extends BaseLoggerMessage {
      * 获取实例
      * @return
      */
-    public static RequestLoggerMessage getInstance() {
+    public static RequestLoggerMessage getInstance(String queryString, Object params) throws IOException {
         if (null != RequestContextHolder.getRequestAttributes()) {
             HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
             return RequestLoggerMessage
@@ -41,6 +49,8 @@ public class RequestLoggerMessage extends BaseLoggerMessage {
                     .ip(getIpAddress(req))
                     .method(req.getMethod())
                     .uri(req.getRequestURI())
+                    .queryString(queryString)
+                    .params(params)
                     .build();
         }
         return RequestLoggerMessage.builder().build();

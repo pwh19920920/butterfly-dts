@@ -10,7 +10,7 @@ import lombok.experimental.SuperBuilder;
  */
 @Getter
 @SuperBuilder
-public class ServiceLoggerMessage extends BaseLoggerMessage {
+public class ResponseLoggerMessage extends BaseLoggerMessage {
 
     /**
      * 业务标题
@@ -24,7 +24,7 @@ public class ServiceLoggerMessage extends BaseLoggerMessage {
 
     @Override
     public LoggerType getType() {
-        return LoggerType.TYPE_SERVICE;
+        return LoggerType.TYPE_RESPONSE;
     }
 
     /**
@@ -33,8 +33,8 @@ public class ServiceLoggerMessage extends BaseLoggerMessage {
      * @param args
      * @return
      */
-    public static ServiceLoggerMessage getInstance(String title, String format, Object... args) {
-        return ServiceLoggerMessage.builder()
+    public static ResponseLoggerMessage getInstance(String title, String format, Object... args) {
+        return ResponseLoggerMessage.builder()
                 .title(title)
                 .message(format)
                 .args(args)

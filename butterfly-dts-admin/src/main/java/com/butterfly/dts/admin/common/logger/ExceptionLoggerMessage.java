@@ -1,7 +1,7 @@
 package com.butterfly.dts.admin.common.logger;
 
-import lombok.Builder;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.PrintWriter;
@@ -14,23 +14,23 @@ import java.io.StringWriter;
  * @Date: 2017/10/24
  */
 @Getter
-@Builder
+@SuperBuilder
 public class ExceptionLoggerMessage extends BaseLoggerMessage {
 
     /**
      * 异常类型
      */
-    private String exception;
+    private final String exception;
 
     /**
      * 异常消息
      */
-    private String message;
+    private final String message;
 
     /**
      * 异常堆栈
      */
-    private String stackTrace;
+    private final String stackTrace;
 
     @Override
     public LoggerType getType() {
@@ -46,19 +46,15 @@ public class ExceptionLoggerMessage extends BaseLoggerMessage {
      */
     public static ExceptionLoggerMessage getInstance(Throwable ex, String format, Object... args) {
         if (null == ex) {
-            ExceptionLoggerMessage log = ExceptionLoggerMessage.builder().message(format).build();
-            log.setArgs(args);
-            return log;
+            return ExceptionLoggerMessage.builder().message(format).args(args).build();
         }
 
-        ExceptionLoggerMessage log = ExceptionLoggerMessage
-                .builder()
+        return ExceptionLoggerMessage.builder()
                 .exception(ex.getClass().getSimpleName())
                 .message(format)
+                .args(args)
                 .stackTrace(printStackTraceToString(ex.getCause()))
                 .build();
-        log.setArgs(args);
-        return log;
     }
 
     /**

@@ -22,7 +22,7 @@
         <fastjson.version>1.2.83</fastjson.version>
         <commons-lang3.version>3.5</commons-lang3.version>
         <hutool-all.version>5.7.22</hutool-all.version>
-        <logstash-logback-encoder.verison>4.11</logstash-logback-encoder.verison>
+        <logstash-logback-encoder.verison>7.0</logstash-logback-encoder.verison>
 
         <!-- db -->
         <mybatis-plus-boot-starter.version>3.5.1</mybatis-plus-boot-starter.version>

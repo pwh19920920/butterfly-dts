@@ -27,6 +27,11 @@ public class PluginPrefix extends BaseModel {
     private String name;
 
     /**
+     * 插件类型
+     */
+    private String pluginType;
+
+    /**
      * 业务线id
      */
     private Long systemBusinessLineId;
